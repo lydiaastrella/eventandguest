@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,9 @@ public class EventActivity extends AppCompatActivity {
     RecyclerView rv;
     private ArrayList<Event> list;
     final String STATE_LIST = "state_list";
+
+    public static String EXTRA_SELECTED_VALUE = "extra_selected_value";
+    public static int RESULT_CODE = 800;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,5 +55,9 @@ public class EventActivity extends AppCompatActivity {
         Log.d("clicked","event item clicked");
         Toast toast = Toast.makeText(this, event.getName(), Toast.LENGTH_SHORT);
         toast.show();
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(EXTRA_SELECTED_VALUE, event.getName());
+        setResult(RESULT_CODE, resultIntent);
+        finish();
     }
 }

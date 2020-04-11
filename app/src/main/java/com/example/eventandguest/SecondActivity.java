@@ -56,4 +56,15 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 break;
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_EVENT) {
+            if (resultCode == EventActivity.RESULT_CODE) {
+                String selectedValue = data.getStringExtra(EventActivity.EXTRA_SELECTED_VALUE);
+                btnEvent.setText(selectedValue);
+            }
+        }
+    }
 }
