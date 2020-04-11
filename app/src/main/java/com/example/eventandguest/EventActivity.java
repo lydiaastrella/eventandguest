@@ -5,6 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,5 +38,18 @@ public class EventActivity extends AppCompatActivity {
         ListEventAdapter listEventAdapter = new ListEventAdapter(this);
         listEventAdapter.setListPresident(list);
         rv.setAdapter(listEventAdapter);
+
+        listEventAdapter.setOnItemClickCallback(new ListEventAdapter.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(Event event) {
+                showSelectedEvent(event);
+            }
+        });
+    }
+
+    private void showSelectedEvent(Event event){
+        Log.d("clicked","event item clicked");
+        Toast toast = Toast.makeText(this, event.getName(), Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

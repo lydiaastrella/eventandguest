@@ -19,6 +19,7 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.Cate
 
     private Context context;
     private ArrayList<Event> listEvent;
+    private OnItemClickCallback onItemClickCallback;
 
     public ListEventAdapter(Context context){
         this.context = context;
@@ -40,7 +41,7 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.Cate
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListEventAdapter.CategoryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ListEventAdapter.CategoryViewHolder holder, int position) {
         holder.tvName.setText(getListEvent().get(position).getName());
         holder.tvDate.setText(getListEvent().get(position).getDate());
 
@@ -48,6 +49,14 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.Cate
                 .load(getListEvent().get(position).getImage())
                 .apply(new RequestOptions().override(55,55))
                 .into(holder.imgPhoto);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                onItemClickCallback.onItemClicked(listEvent.get(holder.getAdapterPosition()));
+            }
+        });
+
     }
 
     @Override
@@ -65,5 +74,13 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.Cate
             tvDate = itemView.findViewById(R.id.tv_item_date);
             imgPhoto = itemView.findViewById(R.id.img_item_photo);
         }
+    }
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
+    }
+
+    public interface OnItemClickCallback {
+        void onItemClicked(Event event);
     }
 }
