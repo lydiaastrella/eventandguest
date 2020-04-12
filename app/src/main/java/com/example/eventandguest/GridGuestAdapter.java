@@ -77,7 +77,4 @@ public class GridGuestAdapter extends RecyclerView.Adapter<GridGuestAdapter.Grid
     public ArrayList<Guest> getListGuest() {
         return listGuest;
     }
-
-
-
 }
