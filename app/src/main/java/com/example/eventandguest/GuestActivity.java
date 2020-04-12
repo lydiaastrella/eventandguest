@@ -1,22 +1,19 @@
 package com.example.eventandguest;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class GuestActivity extends AppCompatActivity {
 
     RecyclerView rv;
-    private GuestViewModel guestViewModel;
     private GridGuestAdapter gridGuestAdapter;
 
     public static String EXTRA_SELECTED_VALUE = "extra_selected_value";
@@ -34,7 +31,7 @@ public class GuestActivity extends AppCompatActivity {
         rv.setLayoutManager(new GridLayoutManager(this, 2));
         gridGuestAdapter = new GridGuestAdapter();
         gridGuestAdapter.notifyDataSetChanged();
-        guestViewModel = ViewModelProviders.of(this).get(GuestViewModel.class);
+        GuestViewModel guestViewModel = ViewModelProviders.of(this).get(GuestViewModel.class);
         guestViewModel.setGuest();
         guestViewModel.getGuests().observe(this, getGuest);
 
@@ -58,8 +55,6 @@ public class GuestActivity extends AppCompatActivity {
     };
 
     private void showSelectedGuest(Guest guest){
-        Toast toast = Toast.makeText(this, guest.getFirst_name(), Toast.LENGTH_SHORT);
-        toast.show();
         Intent resultIntent = new Intent();
         resultIntent.putExtra(EXTRA_SELECTED_VALUE, guest.getFirst_name() + " " + guest.getLast_name());
         resultIntent.putExtra(EXTRA_SELECTED_ID, guest.getId());

@@ -21,7 +21,7 @@ public class Guest implements Parcelable {
         }
     }
 
-    protected Guest(Parcel in) {
+    private Guest(Parcel in) {
         id = in.readInt();
         email = in.readString();
         first_name = in.readString();
@@ -57,7 +57,7 @@ public class Guest implements Parcelable {
         this.email = email;
     }
 
-    public String getFirst_name() {
+    String getFirst_name() {
         return first_name;
     }
 
@@ -65,7 +65,7 @@ public class Guest implements Parcelable {
         this.first_name = first_name;
     }
 
-    public String getLast_name() {
+    String getLast_name() {
         return last_name;
     }
 
@@ -73,7 +73,7 @@ public class Guest implements Parcelable {
         this.last_name = last_name;
     }
 
-    public String getAvatar() {
+    String getAvatar() {
         return avatar;
     }
 

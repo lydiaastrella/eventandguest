@@ -7,10 +7,10 @@ public class Event implements Parcelable {
     private int id;
     private String name, date, image;
 
-    public Event() {
+    Event() {
     }
 
-    protected Event(Parcel in) {
+    private Event(Parcel in) {
         id = in.readInt();
         name = in.readString();
         date = in.readString();
@@ -37,27 +37,27 @@ public class Event implements Parcelable {
         this.id = id;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public String getDate() {
+    String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    void setDate(String date) {
         this.date = date;
     }
 
-    public String getImage() {
+    String getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    void setImage(String image) {
         this.image = image;
     }
 

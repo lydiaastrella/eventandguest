@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -39,13 +40,13 @@ public class GuestViewModel extends ViewModel {
                     }
                     listGuests.postValue(listItems);
                 } catch (Exception e) {
-                    Log.d("Error read detail data", e.getMessage());
+                    Log.d("Error read detail data", Objects.requireNonNull(e.getMessage()));
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Log.d("onFailure", error.getMessage());
+                Log.d("onFailure", Objects.requireNonNull(error.getMessage()));
             }
         });
     }

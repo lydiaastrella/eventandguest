@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,10 +20,10 @@ public class GridGuestAdapter extends RecyclerView.Adapter<GridGuestAdapter.Grid
 
     private OnItemClickCallback onItemClickCallback;
 
-    public GridGuestAdapter() {
+    GridGuestAdapter() {
     }
 
-    public void setData (ArrayList<Guest> items){
+    void setData(ArrayList<Guest> items){
         listGuest.clear();
         listGuest.addAll(items);
         notifyDataSetChanged();
@@ -43,6 +44,9 @@ public class GridGuestAdapter extends RecyclerView.Adapter<GridGuestAdapter.Grid
                 .apply(new RequestOptions().override(350, 350))
                 .into(holder.imgPhoto);
 
+        String fullName = getListGuest().get(position).getFirst_name() + " " + getListGuest().get(position).getLast_name();
+        holder.tvName.setText(fullName);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,16 +61,18 @@ public class GridGuestAdapter extends RecyclerView.Adapter<GridGuestAdapter.Grid
     }
 
 
-    public class GridViewHolder extends RecyclerView.ViewHolder {
+    static class GridViewHolder extends RecyclerView.ViewHolder {
         ImageView imgPhoto;
+        TextView tvName;
 
-        public GridViewHolder(@NonNull View itemView) {
+        GridViewHolder(@NonNull View itemView) {
             super(itemView);
             imgPhoto = itemView.findViewById(R.id.img_guest);
+            tvName = itemView.findViewById(R.id.tv_guest_name);
         }
     }
 
-    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+    void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback;
     }
 
@@ -74,7 +80,7 @@ public class GridGuestAdapter extends RecyclerView.Adapter<GridGuestAdapter.Grid
         void onItemClicked(Guest data);
     }
 
-    public ArrayList<Guest> getListGuest() {
+    private ArrayList<Guest> getListGuest() {
         return listGuest;
     }
 }

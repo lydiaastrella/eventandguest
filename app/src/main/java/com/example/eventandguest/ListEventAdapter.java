@@ -21,15 +21,15 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.Cate
     private ArrayList<Event> listEvent;
     private OnItemClickCallback onItemClickCallback;
 
-    public ListEventAdapter(Context context){
+    ListEventAdapter(Context context){
         this.context = context;
     }
 
-    public ArrayList<Event> getListEvent(){
+    private ArrayList<Event> getListEvent(){
         return listEvent;
     }
 
-    public void setListPresident(ArrayList<Event> listEvent) {
+    void setListPresident(ArrayList<Event> listEvent) {
         this.listEvent = listEvent;
     }
 
@@ -64,11 +64,11 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.Cate
         return  getListEvent().size();
     }
 
-    public class CategoryViewHolder extends RecyclerView.ViewHolder{
+    static class CategoryViewHolder extends RecyclerView.ViewHolder{
         TextView tvName;
         TextView tvDate;
         ImageView imgPhoto;
-        public CategoryViewHolder(@NonNull View itemView) {
+        CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_item_name);
             tvDate = itemView.findViewById(R.id.tv_item_date);
@@ -76,7 +76,7 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.Cate
         }
     }
 
-    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+    void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback;
     }
 

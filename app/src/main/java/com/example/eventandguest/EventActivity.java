@@ -1,21 +1,18 @@
 package com.example.eventandguest;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class EventActivity extends AppCompatActivity {
 
-    RecyclerView rv;
     private ArrayList<Event> list;
+    RecyclerView rv;
     final String STATE_LIST = "state_list";
 
     public static String EXTRA_SELECTED_VALUE = "extra_selected_value";
@@ -35,7 +32,9 @@ public class EventActivity extends AppCompatActivity {
             list.addAll(EventData.getListData());
         }else{
             ArrayList<Event> stateList = savedInstanceState.getParcelableArrayList(STATE_LIST);
-            list.addAll(stateList);
+            if (stateList != null) {
+                list.addAll(stateList);
+            }
         }
 
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -52,12 +51,15 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void showSelectedEvent(Event event){
-        Log.d("clicked","event item clicked");
-        Toast toast = Toast.makeText(this, event.getName(), Toast.LENGTH_SHORT);
-        toast.show();
         Intent resultIntent = new Intent();
         resultIntent.putExtra(EXTRA_SELECTED_VALUE, event.getName());
         setResult(RESULT_CODE, resultIntent);
         finish();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(STATE_LIST, list);
     }
 }

@@ -1,15 +1,13 @@
 package com.example.eventandguest;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -43,14 +41,10 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
 
         switch (view.getId()){
             case R.id.btn_event:
-                Toast eventToast = Toast.makeText(SecondActivity.this, "Event", Toast.LENGTH_SHORT);
-                eventToast.show();
                 Intent moveToEvent = new Intent(SecondActivity.this, EventActivity.class);
                 startActivityForResult(moveToEvent, REQUEST_EVENT);
                 break;
             case R.id.btn_guest:
-                Toast guestToast = Toast.makeText(SecondActivity.this, "Guest", Toast.LENGTH_SHORT);
-                guestToast.show();
                 Intent moveToGuest = new Intent(SecondActivity.this, GuestActivity.class);
                 startActivityForResult(moveToGuest, REQUEST_GUEST);
                 break;
