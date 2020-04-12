@@ -65,6 +65,11 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 String selectedValue = data.getStringExtra(EventActivity.EXTRA_SELECTED_VALUE);
                 btnEvent.setText(selectedValue);
             }
+        }else if(requestCode == REQUEST_GUEST){
+            if(resultCode == GuestActivity.RESULT_CODE){
+                String selectedValue = data.getStringExtra(GuestActivity.EXTRA_SELECTED_VALUE);
+                btnGuest.setText(selectedValue);
+            }
         }
     }
 }

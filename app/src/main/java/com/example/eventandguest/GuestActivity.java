@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -17,6 +18,9 @@ public class GuestActivity extends AppCompatActivity {
     RecyclerView rv;
     private GuestViewModel guestViewModel;
     private GridGuestAdapter gridGuestAdapter;
+
+    public static String EXTRA_SELECTED_VALUE = "extra_selected_value";
+    public static int RESULT_CODE = 800;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,10 @@ public class GuestActivity extends AppCompatActivity {
     private void showSelectedGuest(Guest guest){
         Toast toast = Toast.makeText(this, guest.getFirst_name(), Toast.LENGTH_SHORT);
         toast.show();
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(EXTRA_SELECTED_VALUE, guest.getFirst_name() + " " + guest.getLast_name());
+        setResult(RESULT_CODE, resultIntent);
+        finish();
     }
 
 }
