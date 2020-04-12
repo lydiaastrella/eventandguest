@@ -20,6 +20,7 @@ public class GuestActivity extends AppCompatActivity {
     private GridGuestAdapter gridGuestAdapter;
 
     public static String EXTRA_SELECTED_VALUE = "extra_selected_value";
+    public static String  EXTRA_SELECTED_ID = "extra_selected_id";
     public static int RESULT_CODE = 800;
 
     @Override
@@ -61,6 +62,7 @@ public class GuestActivity extends AppCompatActivity {
         toast.show();
         Intent resultIntent = new Intent();
         resultIntent.putExtra(EXTRA_SELECTED_VALUE, guest.getFirst_name() + " " + guest.getLast_name());
+        resultIntent.putExtra(EXTRA_SELECTED_ID, guest.getId());
         setResult(RESULT_CODE, resultIntent);
         finish();
     }

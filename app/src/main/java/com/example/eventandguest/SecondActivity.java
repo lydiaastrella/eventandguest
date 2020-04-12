@@ -68,7 +68,20 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         }else if(requestCode == REQUEST_GUEST){
             if(resultCode == GuestActivity.RESULT_CODE){
                 String selectedValue = data.getStringExtra(GuestActivity.EXTRA_SELECTED_VALUE);
+                int selectedId = data.getIntExtra(GuestActivity.EXTRA_SELECTED_ID, -999);
                 btnGuest.setText(selectedValue);
+
+                Toast toast;
+                if(selectedId % 2 == 0 && selectedId % 3 == 0){
+                    toast = Toast.makeText(this, "iOS", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else if (selectedId % 2 == 0){
+                    toast = Toast.makeText(this, "blackberry", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else if (selectedId % 3 == 0){
+                    toast = Toast.makeText(this, "android", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         }
     }
